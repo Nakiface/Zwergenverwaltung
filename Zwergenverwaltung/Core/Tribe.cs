@@ -10,14 +10,14 @@ namespace Zwergenverwaltung
         public int force =>
             dwarfList.Aggregate(0, (a, dwarf) => a + dwarf.force);
         public int leadsince { get; set; }
-        public Dwarf leader { get; set; }
+        public string leader { get; set; }
         public List<Dwarf> dwarfList { get; set; }
         public Tribe(string name, int founding, List<Dwarf> dwarfList = null, Dwarf leader = null, int leadsince = 0)
         {
             this.name = name;
             this.founding = founding;
             this.dwarfList = dwarfList;
-            this.leader = leader;
+            this.leader = leader?.name;
             this.leadsince = leadsince;
         }
 
@@ -39,7 +39,7 @@ namespace Zwergenverwaltung
                 return false;
 
             if (dwarfList.Contains(dwarf))            
-                this.leader = dwarf;            
+                this.leader = dwarf.name;            
             else
                 return false;
 

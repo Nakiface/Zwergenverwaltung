@@ -66,5 +66,10 @@ namespace Zwergenverwaltung
         {
             tribeList.Add(tribe);
         }
+
+        public void removeTribe(Tribe tribe)
+        {
+            tribeList.Remove(tribe);
+        }
     }
 }
