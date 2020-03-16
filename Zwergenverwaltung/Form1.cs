@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -11,26 +12,58 @@ namespace Zwergenverwaltung
 {
     public partial class Form1 : Form
     {
-        Data data = new Data();
+        private Data data { get; set; } = new Data();
+        private CurrentInformation currentInformation { get; set; } = new CurrentInformation();
+
         public Form1()
         {
+            this.data.setBaseDataset();
             InitializeComponent();
             BindingSource bindingSource1 = new BindingSource();
-            bindingSource1.Add(data.tribeList[0]);
-            bindingSource1.Add(data.tribeList[1]);
+            dataGridViewTribe.DataSource = data.tribeList;
 
-            dataGridView1.DataSource = bindingSource1;
-            dataGridView1.AutoSize = true;
-            dataGridView1.AutoGenerateColumns = false;
+            dataGridViewDwarf.DataSource =
+            data.tribeList[0].dwarfList;
 
-            DataGridViewColumn tribeName = new DataGridViewColumn();
-            tribeName.DataPropertyName = "founding";
-            tribeName.Name = "Stamm";
-            dataGridView1.Columns.Add(tribeName);
+            dataGridViewTribe.SelectionChanged += DataGridViewTribe_SelectionChanged;
+            dataGridViewDwarf.SelectionChanged += DataGridViewDwarf_SelectionChanged;
+        }
 
+        private void DataGridViewDwarf_SelectionChanged(object sender, EventArgs e)
+        {
+            var Row = dataGridViewDwarf.SelectedRows;
+            if (Row.Count > 0)
+            {
+                var dwarfName = Row[0].Cells[0].Value;
 
-           
+                var dwarf = currentInformation.dwarfList.Where(x => x.name == dwarfName.ToString()).FirstOrDefault();
+                dataGridViewWeapon.DataSource = dwarf.weaponList;
+            }
+        }
+
+        private void DataGridViewTribe_SelectionChanged(object sender, EventArgs e)
+        {
+            var Row = dataGridViewTribe.SelectedRows;
+            if (Row.Count > 0)
+            {
+                var tribeName = Row[0].Cells[0].Value;
+
+                var tribe = data.tribeList.Where(x => x.name == tribeName.ToString()).FirstOrDefault();
+                //dataGridViewDwarf.DataSource = tribe.dwarfList;
+
+                currentInformation.tribe = data.tribeList.Where(x => x.name == tribeName.ToString()).FirstOrDefault();
+                currentInformation.dwarfList = currentInformation.tribe.dwarfList;
+                dataGridViewDwarf.DataSource = currentInformation.dwarfList;
+            }                      
         }
     }
-
+    public class CurrentInformation
+    {
+        public List<Tribe> tribeList { get; set; }
+        public Tribe tribe { get; set; }
+        public List<Dwarf> dwarfList { get; set; }
+        public Dwarf dwarf { get; set; }
+        public List<Weapon> weaponList { get; set; }
+        public Weapon weapon { get; set; }
+    }
 }
