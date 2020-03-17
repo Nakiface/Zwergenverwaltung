@@ -40,7 +40,10 @@
             this.numericUpDownTaxValue = new System.Windows.Forms.NumericUpDown();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
-            this.buttonMove = new System.Windows.Forms.Button();
+            this.textBoxForce = new System.Windows.Forms.TextBox();
+            this.textBoxType = new System.Windows.Forms.TextBox();
+            this.labelForce = new System.Windows.Forms.Label();
+            this.labelType = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTribe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDwarf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWeapon)).BeginInit();
@@ -147,11 +150,11 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(68, 135);
+            this.buttonAdd.Location = new System.Drawing.Point(45, 562);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdd.Size = new System.Drawing.Size(146, 23);
             this.buttonAdd.TabIndex = 10;
-            this.buttonAdd.Text = "Add";
+            this.buttonAdd.Text = "AddWeapon";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
@@ -165,22 +168,47 @@
             this.buttonRemove.UseVisualStyleBackColor = true;
             this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
-            // buttonMove
+            // textBoxForce
             // 
-            this.buttonMove.Location = new System.Drawing.Point(68, 193);
-            this.buttonMove.Name = "buttonMove";
-            this.buttonMove.Size = new System.Drawing.Size(75, 23);
-            this.buttonMove.TabIndex = 12;
-            this.buttonMove.Text = "Move";
-            this.buttonMove.UseVisualStyleBackColor = true;
-            this.buttonMove.Click += new System.EventHandler(this.buttonMove_Click);
+            this.textBoxForce.Location = new System.Drawing.Point(91, 534);
+            this.textBoxForce.Name = "textBoxForce";
+            this.textBoxForce.Size = new System.Drawing.Size(100, 22);
+            this.textBoxForce.TabIndex = 12;
+            // 
+            // textBoxType
+            // 
+            this.textBoxType.Location = new System.Drawing.Point(91, 505);
+            this.textBoxType.Name = "textBoxType";
+            this.textBoxType.Size = new System.Drawing.Size(100, 22);
+            this.textBoxType.TabIndex = 13;
+            // 
+            // labelForce
+            // 
+            this.labelForce.AutoSize = true;
+            this.labelForce.Location = new System.Drawing.Point(30, 534);
+            this.labelForce.Name = "labelForce";
+            this.labelForce.Size = new System.Drawing.Size(44, 17);
+            this.labelForce.TabIndex = 14;
+            this.labelForce.Text = "Force";
+            // 
+            // labelType
+            // 
+            this.labelType.AutoSize = true;
+            this.labelType.Location = new System.Drawing.Point(42, 508);
+            this.labelType.Name = "labelType";
+            this.labelType.Size = new System.Drawing.Size(32, 17);
+            this.labelType.TabIndex = 15;
+            this.labelType.Text = "Typ";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1177, 828);
-            this.Controls.Add(this.buttonMove);
+            this.Controls.Add(this.labelType);
+            this.Controls.Add(this.labelForce);
+            this.Controls.Add(this.textBoxType);
+            this.Controls.Add(this.textBoxForce);
             this.Controls.Add(this.buttonRemove);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.numericUpDownTaxValue);
@@ -219,7 +247,10 @@
         private System.Windows.Forms.NumericUpDown numericUpDownTaxValue;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonRemove;
-        private System.Windows.Forms.Button buttonMove;
+        private System.Windows.Forms.TextBox textBoxForce;
+        private System.Windows.Forms.TextBox textBoxType;
+        private System.Windows.Forms.Label labelForce;
+        private System.Windows.Forms.Label labelType;
     }
 }
 

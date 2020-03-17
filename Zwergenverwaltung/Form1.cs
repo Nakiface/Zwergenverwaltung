@@ -100,8 +100,23 @@ namespace Zwergenverwaltung
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var test = currentInformation.type.Name;
-
+            var row = dataGridViewDwarf.SelectedRows;
+            if (row.Count > 0)
+            {
+                var dwarfName = row[0].Cells[0].Value;
+                var dwarf = (Dwarf) row[0].DataBoundItem;
+                try
+                {
+                    dwarf.addWeapon(new Weapon(textBoxType.Text, Convert.ToInt32(textBoxForce.Text)));
+                }
+                catch
+                {
+                    MessageBox.Show("Ungültige Eingabe");
+                }
+                dataGridViewWeapon.DataSource = null;
+                dataGridViewWeapon.DataSource = dwarf.weaponList;
+                numericUpDownTaxValue.Value = numericUpDownTaxRate.Value * data.tribeList.Aggregate(0, (a, tribe) => a + tribe.force);
+            }
         }
 
         private void buttonRemove_Click(object sender, EventArgs e)
